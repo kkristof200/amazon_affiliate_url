@@ -15,7 +15,7 @@ affiliate_tag = 'YOUR_AFFILIATE_TAG'
 asin = 'PRODUCT_ASIN'
 
 url_creator = AmazonAffiliateURL(affiliate_tag)
-affiliate_link = url_creator(asin)
+affiliate_link = url_creator.url(asin)
 
 print('affiliate_link:', affiliate_link)
 ~~~~
