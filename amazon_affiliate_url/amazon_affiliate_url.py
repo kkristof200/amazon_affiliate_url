@@ -6,4 +6,4 @@ class AmazonAffiliateURL:
         return url(self.affiliate_tag, asin)
 
 def url(affiliate_tag: str, asin: str) -> str:
-    return 'https://www.amazon.com/gp/product/' + asin + '?tag=' + affiliate_tag
+    return 'https://www.amazon.com/dp/' + asin + '?tag=' + affiliate_tag
