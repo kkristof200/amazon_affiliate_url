@@ -132,3 +132,11 @@ class AmazonAffiliateUrl:
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
+
+# deprecated - wil lbe removed in future release
+# kept for convenience
+def url(asin: str) -> str:
+    """DEPRECATED
+        DO NOT USE THIS. THIS WILL BE REMOVED IN FUTURE RELEASES
+    """
+    return 'https://amazon.com/dp/{}'.format(asin)
