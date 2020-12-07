@@ -1,6 +1,7 @@
 # amazon_affiliate_url
 
 ## Install
+
 ~~~~shell
 pip install amazon_affiliate_url
 or
@@ -8,14 +9,20 @@ pip3 install amazon_affiliate_url
 ~~~~
 
 ## Usage
+
 ~~~~python
-from amazon_affiliate_url.amazon_affiliate_url import AmazonAffiliateURL
+from amazon_affiliate_url import AmazonAffiliateUrl
 
-affiliate_tag = 'YOUR_AFFILIATE_TAG'
-asin = 'PRODUCT_ASIN'
+ASIN = 'SOME_ASIN'
+TAG =  'YOUR_AFFILIATE_TAG'
+BITLY_TOKEN = 'YOUR_BITLY_TOKEN'
 
-url_creator = AmazonAffiliateURL(affiliate_tag)
-affiliate_link = url_creator.url(asin)
-
-print('affiliate_link:', affiliate_link)
+print(
+    AmazonAffiliateUrl.url_cls(
+        asin_or_url=ASIN,
+        affiliate_tag=TAG,
+        bitly_token=BITLY_TOKEN,
+        shorten_url=True
+    )
+)
 ~~~~
