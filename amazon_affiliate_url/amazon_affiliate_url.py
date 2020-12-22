@@ -45,8 +45,8 @@ class AmazonAffiliateUrl:
         self,
         asin_or_url: str,
         affiliate_tag: Optional[str] = None,
-        shorten_url: Optioanl[bool] = None,
-        accept_long_url: Optioanl[bool] = None,
+        shorten_url: Optional[bool] = None,
+        accept_long_url: Optional[bool] = None,
         bitly_token: Optional[Tuple[str, List[str]]] = None
     ) -> Optional[str]:
         """Generate affiliate url, or replace ones tag with yours
