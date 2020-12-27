@@ -77,6 +77,10 @@ class AmazonAffiliateUrl:
             return None
 
         affiliate_tag = affiliate_tag or self.affiliate_tag
+
+        if not affiliate_tag.endswith('-20'):
+            affiliate_tag += '-20'
+
         shorten_url = shorten_url if shorten_url is not None else self.shorten_urls
 
         query_dict = parse_qs(parsed_url[4])
