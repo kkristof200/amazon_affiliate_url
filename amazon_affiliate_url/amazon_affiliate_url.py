@@ -8,6 +8,9 @@ from urllib.parse import urlparse, urlunparse, parse_qs, urlencode
 # Pip
 from bitlyshortener import Shortener
 
+# Local
+from .country import Country
+
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
 
 
@@ -23,7 +26,8 @@ class AmazonAffiliateUrl:
         affiliate_tag: str,
         shorten_urls: bool = False,
         accept_long_urls: bool = True,
-        bitly_token: Optional[Tuple[str, List[str]]] = None
+        bitly_token: Optional[Tuple[str, List[str]]] = None,
+        country: Country = Country.UnitedStates
     ):
         """Creates an AmazonAffiliateUrl object
 
@@ -32,11 +36,13 @@ class AmazonAffiliateUrl:
             shorten_url (bool, optional): Shorten the generated url. Defaults to False).
             accept_long_url (bool, optional): If url shortening is unsuccessful, should the url still be returned. Defaults to True).
             bitly_token (Optional[Tuple[str, List[str]]], optional): Bitly token(s) needed for URL shortening. Defaults to None.
+            country (Optional[Country], optional): Country to use to create the link with. Only used, if asiin is passed instead of url (Defaults to None).
         """
         self.affiliate_tag = affiliate_tag
         self.shorten_urls = shorten_urls
         self.accept_long_urls = accept_long_urls
         self.bitly_token = bitly_token
+        self.country = country
 
 
     # -------------------------------------------------------- Public methods -------------------------------------------------------- #
@@ -47,7 +53,8 @@ class AmazonAffiliateUrl:
         affiliate_tag: Optional[str] = None,
         shorten_url: Optional[bool] = None,
         accept_long_url: Optional[bool] = None,
-        bitly_token: Optional[Tuple[str, List[str]]] = None
+        bitly_token: Optional[Tuple[str, List[str]]] = None,
+        country: Optional[Country] = None
     ) -> Optional[str]:
         """Generate affiliate url, or replace ones tag with yours
 
@@ -57,6 +64,7 @@ class AmazonAffiliateUrl:
             shorten_url (Optional[bool], optional): Shorten the generated url. Defaults to None(used from self(defults to False)).
             accept_long_url (Optional[bool], optional): If url shortening is unsuccessful, should the url still be returned. Defaults to None(used from self(defults to True)).
             bitly_token (Optional[Tuple[str, List[str]]], optional): Bitly token(s) needed for URL shortening. Defaults to None.
+            country (Optional[Country], optional): Country to use to create the link with. Only used, if asiin is passed instead of url (Defaults to None).
 
         Returns:
             Optional[str]: Amazon url with the passed affiliate tag
@@ -67,7 +75,8 @@ class AmazonAffiliateUrl:
             if not asin_or_url.startswith('https://') and not asin_or_url.startswith('http://'):
                 url = 'https://{}'.format(url)
         else:
-            url = 'https://amazon.com/dp/{}'.format(asin_or_url)
+            country = country or self.country
+            url = 'https://amazon.{}/dp/{}'.format(country.value, asin_or_url)
 
         parsed_url = urlparse(url)
 
@@ -118,16 +127,18 @@ class AmazonAffiliateUrl:
         affiliate_tag: str,
         shorten_url: bool = False,
         accept_long_url: bool = True,
-        bitly_token: Optional[Tuple[str, List[str]]] = None
+        bitly_token: Optional[Tuple[str, List[str]]] = None,
+        country: Optional[Country] = None
     ) -> Optional[str]:
         """Generate affiliate url, or replace ones tag with yours
 
         Args:
             asin_or_url (str): An asin or an amazon url
             affiliate_tag (str): [description]. Your affiliate tag.
-            shorten_url (bool, optional): Shorten the generated url. Defaults to False).
-            accept_long_url (bool, optional): If url shortening is unsuccessful, should the url still be returned. Defaults to True).
-            bitly_token (Optional[Tuple[str, List[str]]], optional): Bitly token(s) needed for URL shortening. Defaults to None.
+            shorten_url (bool, optional): Shorten the generated url. (Defaults to False).
+            accept_long_url (bool, optional): If url shortening is unsuccessful, should the url still be returned. (Defaults to True).
+            bitly_token (Optional[Tuple[str, List[str]]], optional): Bitly token(s) needed for URL shortening. (Defaults to None).
+            country (Optional[Country], optional): Country to use to create the link with. Only used, if asiin is passed instead of url (Defaults to None).
 
         Returns:
             Optional[str]: Amazon url with the passed affiliate tag
@@ -136,11 +147,3 @@ class AmazonAffiliateUrl:
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #
-
-# deprecated - wil lbe removed in future release
-# kept for convenience
-def url(asin: str) -> str:
-    """DEPRECATED
-        DO NOT USE THIS. THIS WILL BE REMOVED IN FUTURE RELEASES
-    """
-    return 'https://amazon.com/dp/{}'.format(asin)

@@ -1,4 +1,4 @@
-from amazon_affiliate_url import AmazonAffiliateUrl
+from amazon_affiliate_url import AmazonAffiliateUrl, Country
 
 ASIN = 'SOME_ASIN'
 TAG =  'YOUR_AFFILIATE_TAG'
@@ -9,6 +9,7 @@ print(
         asin_or_url=ASIN,
         affiliate_tag=TAG,
         bitly_token=BITLY_TOKEN,
-        shorten_url=True
+        shorten_url=True,
+        country=Country.Netherlands
     )
 )
