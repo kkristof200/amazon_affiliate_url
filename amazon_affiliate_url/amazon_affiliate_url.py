@@ -143,7 +143,7 @@ class AmazonAffiliateUrl:
         Returns:
             Optional[str]: Amazon url with the passed affiliate tag
         """
-        return cls(affiliate_tag).url(asin_or_url, shorten_url=shorten_url, accept_long_url=accept_long_url, bitly_token=bitly_token)
+        return cls(affiliate_tag).url(asin_or_url, shorten_url=shorten_url, accept_long_url=accept_long_url, bitly_token=bitly_token, country=country)
 
 
 # ---------------------------------------------------------------------------------------------------------------------------------------- #

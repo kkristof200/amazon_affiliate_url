@@ -8,8 +8,8 @@ print(
     AmazonAffiliateUrl.url_cls(
         asin_or_url=ASIN,
         affiliate_tag=TAG,
-        bitly_token=BITLY_TOKEN,
-        shorten_url=True,
+        # bitly_token=BITLY_TOKEN,
+        # shorten_url=True,
         country=Country.Netherlands
     )
 )

@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="amazon_affiliate_url",
-    version="0.1.1",
+    version="0.1.2",
     author="Kristof",
     description="amazon_affiliate_url",
     long_description=long_description,
