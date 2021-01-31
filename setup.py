@@ -5,14 +5,16 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="amazon_affiliate_url",
-    version="0.1.3",
+    version="0.1.4",
     author="Kristof",
     description="amazon_affiliate_url",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/kkristof200/amazon_affiliate_url",
     packages=setuptools.find_packages(),
-    install_requires=["bitlyshortener"],
+    install_requires=[
+        'bitlyshortener'
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
